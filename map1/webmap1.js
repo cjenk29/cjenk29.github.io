@@ -10,6 +10,11 @@ let myPolygon = L.polygon([
   [31, -91],
   [32, -90],
 ]).addTo(myMap);
+let TigerStadium = L.polygon([
+	[30.4120, -91.1838],
+	[30.4445, -91.1890]
+]).addTo(myMap);
 
 myPolygon.bindPopup('A polygon')
-nolaPoint.bindPopup('A <strong>marker</strong>')
+BRPoint.bindPopup('A <strong>marker</strong>')
+TigerStadium.bindPopup ('BR Line')
