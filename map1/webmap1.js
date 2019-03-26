@@ -1,4 +1,4 @@
-let myMap = L.map('Baton Rouge, LA').setView([30.36, -91.06], 4)
+let myMap = L.map('map1').setView([30.36, -91.06], 4)
 //L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png').addTo(myMap)
 var OpenStreetMap_BlackAndWhite = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
 	maxZoom: 18,
