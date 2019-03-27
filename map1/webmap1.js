@@ -12,9 +12,9 @@ let myPolygon = L.polygon([
 ]).addTo(myMap);
 let TigerStadium = L.polygon([
 	[30.4120, -91.1838],
-	[30.4445, -91.1890]
+	[30.2385, -90.9201]
 ]).addTo(myMap);
 
-myPolygon.bindPopup('A polygon')
-BRPoint.bindPopup('A <strong>marker</strong>')
-TigerStadium.bindPopup ('BR Line')
+myPolygon.bindPopup('New Orleans')
+BRPoint.bindPopup('A <strong>Baton Rouge</strong>')
+TigerStadium.bindPopup ('BR to Gonzales')
