@@ -1,20 +1,14 @@
-let myMap = L.map('map1').setView([30.36, -91.06], 4)
-//L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png').addTo(myMap)
-var OpenStreetMap_BlackAndWhite = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
-let BRPoint = L.marker([30.36, -91.06]).addTo(myMap)
-let myPolygon = L.polygon([
-  [30, -90],
-  [31, -91],
-  [32, -90],
-]).addTo(myMap);
-let TigerStadium = L.polygon([
-	[30.4120, -91.1838],
-	[30.2385, -90.9201]
-]).addTo(myMap);
-
-myPolygon.bindPopup('New Orleans')
-BRPoint.bindPopup('A <strong>Baton Rouge</strong>')
-TigerStadium.bindPopup ('BR to Gonzales')
+let Earth = L.map('webmap2').setView([40, -95], 5);
+	L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(Earth);
+	L.tileLayer.wms('https://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_ocean_sfc_sst_time/MapServer/WMSServer', {
+  		layers: '1',
+  		format: 'image/png',
+  		transparent: true,
+  		attribution: 'NOAA'
+	}).addTo(Earth)
+	L.tileLayer.wms('https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_emulated_imagery_lightningstrikedensity_goes_time/MapServer/WMSServer', {
+ 		 layers: '1',
+ 		 format: 'image/png',
+  		transparent: true,
+  attribution: 'NOAA'
+}).addTo(Earth);
