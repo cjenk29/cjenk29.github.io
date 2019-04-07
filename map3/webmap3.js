@@ -6,7 +6,7 @@ jQuery.getJSON(usmapDemographicsUrl, function (data) {
   let stateStyle = function (feature) {
     let population = feature.properties.POPULATION;
     let stateColor = 'purple';
-    if ( population == '500500'  ) { stateColor = 'teal' }
+    if ( population >= '5000000'  ) { stateColor = 'teal' }
     return {
       stroke: false,
       color: stateColor,
