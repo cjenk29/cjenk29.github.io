@@ -1,15 +1,14 @@
-let us = L.map('webmap3').setView([37.5, -95], 4.0);
+let usmap = L.map('webmap3').setView([37.5, -95], 4.0);
 let basemap = 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png';
-L.tileLayer(basemap).addTo(us);
-let USDemographicsUrl = 'https://geog4046.github.io/portfolio/data/us_state_demographics_ESRI_2010A.geojson';
-jQuery.getJSON(USDemographicsUrl, function (data) {
-  let parkStyle = function (feature) {
+L.tileLayer(basemap).addTo(usmap);
+let usmapDemographicsUrl = 'https://geog4046.github.io/portfolio/data/us_state_demographics_ESRI_2010A.geojson';
+jQuery.getJSON(usmapDemographicsUrl, function (data) {
+  let stateStyle = function (feature) {
     let population = feature.properties.POPULATION;
     let stateColor = 'purple';
     if ( population == '500500'  ) { stateColor = 'teal' }
     return {
-      stroke: true,
-      opacity: 1,
+      stroke: false,
       color: stateColor,
       weight: 2,
       fillOpacity: 0.5
@@ -25,5 +24,5 @@ jQuery.getJSON(USDemographicsUrl, function (data) {
     style: stateStyle,
     onEachFeature: onEachFeature
   };
-  L.geoJSON(data, parksGeojsonOptions).addTo(us);
+  L.geoJSON(data, parksGeojsonOptions).addTo(usmap);
 })
