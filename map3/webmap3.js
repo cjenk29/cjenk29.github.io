@@ -1,31 +1,29 @@
-let nola = L.map('webmap3').setView([29.978651, -90.057317], 12);
+let us = L.map('webmap3').setView([37.5, -95], 4.0);
 let basemap = 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png';
-L.tileLayer(basemap).addTo(nola);
-let nolaDemographicsUrl = 'https://opendata.arcgis.com/datasets/3273a5f8334d40838681ff0337eddb8c_0.geojson';
-jQuery.getJSON(nolaDemographicsUrl, function (data) {
+L.tileLayer(basemap).addTo(us);
+let USDemographicsUrl = 'https://geog4046.github.io/portfolio/data/us_state_demographics_ESRI_2010A.geojson';
+jQuery.getJSON(USDemographicsUrl, function (data) {
   let parkStyle = function (feature) {
-    let council = feature.properties.COUNCIL;
-    let parkColor = 'purple';
-    if ( council == 'A'  ) { parkColor = 'teal' }
+    let population = feature.properties.POPULATION;
+    let stateColor = 'purple';
+    if ( population == '500500'  ) { stateColor = 'teal' }
     return {
       stroke: true,
       opacity: 1,
-      color: parkColor,
+      color: stateColor,
       weight: 2,
       fillOpacity: 0.5
     };
   };
-    let popup = function (feature, layer) {
-      let name = feature.properties.NAME;
-      let neighborhood = feature.properties.NEGIHBORHOOD_NAME;
-      let street = feature.properties.STREET;
-      let acres = feature.properties.ACRES;
-      let council = feature.properties.COUNCIL;
-      layer.bindPopup('Name: ' + name + '<br>Street: ' + street + '<br>Neighborhood: ' + neighborhood + '<br>Acres: ' + acres + '<br>Council: ' + council);
+    let onEachFeature = function (feature, layer) {
+      let name = feature.properties.STATE_NAME;
+      let pop10 = feature.properties.POP2010;
+      let population = feature.properties.POPULATION;
+       layer.bindPopup('Total population of ' + name + ' ' + 'is' + ': ' + population + '<br>Population in 2010 was: ' + pop10 + ' ' )
   };
   let parksGeojsonOptions = {
-    style: parkStyle,
-    onEachFeature: popup
+    style: stateStyle,
+    onEachFeature: onEachFeature
   };
-  L.geoJSON(data, parksGeojsonOptions).addTo(nola);
+  L.geoJSON(data, parksGeojsonOptions).addTo(us);
 })
